@@ -1,0 +1,3 @@
+const BUTTON_WIDTH = 225;
+const BUTTON_HEIGHT = 80;
+export { BUTTON_HEIGHT, BUTTON_WIDTH };
