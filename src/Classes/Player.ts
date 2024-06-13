@@ -9,9 +9,9 @@ export default class Player {
   public y: number = CANVAS_HEIGHT - 200;
   private width: number;
   private height: number;
-  public gravity: number = 0.4;
+  public gravity: number = 0.7;
   public onGround: boolean = true;
-  public jumpStrength: number = -12;
+  public jumpStrength: number = -20;
   public gameOver: boolean = false;
 
   constructor(
@@ -75,7 +75,6 @@ export default class Player {
       if (this.y + this.height >= CANVAS_HEIGHT) {
         this.y = CANVAS_HEIGHT + this.height;
         this.velocity = 0;
-        this.gameOver = true
         this.onGround = true;
       }
     }
@@ -86,10 +85,6 @@ export default class Player {
       this.velocity = this.jumpStrength;
       this.y += this.velocity;
       this.onGround = false;
-
-      if (this.y + this.height < 0) {
-        this.y = 0;
-      }
     }
   }
 
@@ -100,5 +95,13 @@ export default class Player {
       this.PlayerCoordinates.x + 92 > platform.x &&
       this.PlayerCoordinates.x < platform.x + PLATFORM_WIDTH
     );
+  }
+
+  public resetPlayer() {
+    this.y = CANVAS_HEIGHT - 200;
+    this.x = CANVAS_WIDTH / 2 - 92 / 2;
+    this.onGround = true;
+    this.velocity = 0;
+    this.gameOver = false;
   }
 }

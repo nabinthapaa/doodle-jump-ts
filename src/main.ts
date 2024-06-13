@@ -35,19 +35,19 @@ canvas.addEventListener("click", (e) => {
 });
 
 document.addEventListener("click", (e) => {
-  if (Game_States.on_end_screen) {
-    const is_play_again_clicked = isButtonClicked(
-      210,
-      650,
-      BUTTON_WIDTH,
-      BUTTON_HEIGHT,
-      e.offsetX,
-      e.offsetY
-    );
-    if (is_play_again_clicked) {
-      location.reload();
-    }
-  }
+  const is_play_again_clicked = isButtonClicked(
+    210,
+    650,
+    BUTTON_WIDTH,
+    BUTTON_HEIGHT,
+    e.offsetX,
+    e.offsetY
+  );
+  if(!Game_States.on_end_screen) return;
+  Game_States.is_game_over = !is_play_again_clicked;
+  Game_States.on_end_screen = !is_play_again_clicked;
+  Game_States.on_start_screen = !is_play_again_clicked;
+  Game_States.score = 0;
 });
 
 const FPS = 60;
