@@ -12,6 +12,7 @@ export default class Player {
   public gravity: number = 0.4;
   public onGround: boolean = true;
   public jumpStrength: number = -12;
+  public gameOver: boolean = false;
 
   constructor(
     public name: string,
@@ -71,9 +72,10 @@ export default class Player {
       this.velocity += this.gravity;
       this.y += this.velocity;
 
-      if (this.y + this.height >= CANVAS_HEIGHT + 100) {
-        this.y = CANVAS_HEIGHT;
+      if (this.y + this.height >= CANVAS_HEIGHT) {
+        this.y = CANVAS_HEIGHT + this.height;
         this.velocity = 0;
+        this.gameOver = true
         this.onGround = true;
       }
     }
@@ -84,6 +86,10 @@ export default class Player {
       this.velocity = this.jumpStrength;
       this.y += this.velocity;
       this.onGround = false;
+
+      if (this.y + this.height < 0) {
+        this.y = 0;
+      }
     }
   }
 

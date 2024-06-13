@@ -1,31 +1,8 @@
-import { getImageSource } from "../utils/getImageSource";
-import {
-  BackGround,
-  EnemySprite,
-  PlayerSprite,
-  StartEndSprite,
-  doodle_jump,
-  hole,
-  play,
-  scores,
-  start,
-} from "../images/StartScreen";
+import { images } from "../images/StartScreen";
 import { SCALE } from "../constants/GameConstants";
 import { item_location, item_size } from "../constants/StartScreen";
 import SpriteRenderer from "../Classes/SpriteRenderer";
 import { BUTTON_HEIGHT, BUTTON_WIDTH } from "../constants/SpriteConstants";
-
-const images = {
-  Score_Button_Image: getImageSource(scores),
-  Play_Button_Image: getImageSource(play),
-  Start_Screen_Image: getImageSource(start),
-  Player_Sprite: getImageSource(PlayerSprite),
-  Doodle_jump: getImageSource(doodle_jump),
-  BackGround: getImageSource(BackGround),
-  Start_End_Sprite: getImageSource(StartEndSprite),
-  Enemy_Sprite: getImageSource(EnemySprite),
-  Hole: getImageSource(hole),
-};
 
 function drawBackground(ctx: CanvasRenderingContext2D) {
   ctx.drawImage(
@@ -43,7 +20,7 @@ function drawBackground(ctx: CanvasRenderingContext2D) {
 
 function drawDoodleJump(ctx: CanvasRenderingContext2D) {
   ctx.drawImage(
-    images.Doodle_jump,
+    images.Doodle_Jump,
     0,
     0,
     item_size.doodle_jump_text.width,

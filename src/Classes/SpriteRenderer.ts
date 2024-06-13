@@ -38,5 +38,4 @@ export default class SpriteRenderer {
       SCALE * this.height
     );
   }
-
 }
