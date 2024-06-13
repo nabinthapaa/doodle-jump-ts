@@ -1,3 +1,3 @@
-import InitialPlatform from "/assets/start-platform.png"
+import initialPlatform from "/assets/start-platform.png"
 
-export { InitialPlatform }
+export { initialPlatform }

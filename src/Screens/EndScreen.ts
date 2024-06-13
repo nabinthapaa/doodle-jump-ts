@@ -1,13 +1,13 @@
 import { SCALE } from "../constants/GameConstants";
 import { BUTTON_HEIGHT, BUTTON_WIDTH } from "../constants/SpriteConstants";
-import { Play_Again } from "../images/EndScreen";
+import { playAgainImage } from "../images/EndScreen";
 import { images } from "../images/StartScreen";
-import { GameStates } from "../types/GameStates";
+import { TGameStates } from "../types/GameStates";
 import { getHighScore } from "../utils/HighScores";
 
 function drawGameOverLabels(ctx: CanvasRenderingContext2D) {
   ctx.drawImage(
-    images.Start_End_Sprite,
+    images.startEndSprite,
     0,
     201,
     430,
@@ -19,7 +19,7 @@ function drawGameOverLabels(ctx: CanvasRenderingContext2D) {
   );
 
   ctx.drawImage(
-    images.Start_End_Sprite,
+    images.startEndSprite,
     786,
     315,
     240,
@@ -31,7 +31,7 @@ function drawGameOverLabels(ctx: CanvasRenderingContext2D) {
   );
 
   ctx.drawImage(
-    images.Start_End_Sprite,
+    images.startEndSprite,
     674,
     392,
     335,
@@ -43,7 +43,7 @@ function drawGameOverLabels(ctx: CanvasRenderingContext2D) {
   );
 
   ctx.drawImage(
-    images.Start_End_Sprite,
+    images.startEndSprite,
     703,
     464,
     235,
@@ -74,10 +74,9 @@ function drawScore(
   ctx.fillText(name, 320, 480);
 }
 
-
 export function drawPlayAgainButton(ctx: CanvasRenderingContext2D) {
   ctx.drawImage(
-    Play_Again,
+    playAgainImage,
     0,
     0,
     BUTTON_WIDTH,
@@ -91,7 +90,7 @@ export function drawPlayAgainButton(ctx: CanvasRenderingContext2D) {
 
 export function drawEndScreen(
   ctx: CanvasRenderingContext2D,
-  Game_States: GameStates
+  Game_States: TGameStates
 ) {
   const highScore = getHighScore(Game_States.name);
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -100,4 +99,3 @@ export function drawEndScreen(
   drawScore(ctx, Game_States.score, Game_States.name, highScore);
   drawPlayAgainButton(ctx);
 }
-

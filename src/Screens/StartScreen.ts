@@ -1,8 +1,8 @@
-import { images } from "../images/StartScreen";
-import { SCALE } from "../constants/GameConstants";
-import { item_location, item_size } from "../constants/StartScreen";
 import SpriteRenderer from "../Classes/SpriteRenderer";
+import { SCALE } from "../constants/GameConstants";
 import { BUTTON_HEIGHT, BUTTON_WIDTH } from "../constants/SpriteConstants";
+import { item_location, item_size } from "../constants/StartScreen";
+import { images } from "../images/StartScreen";
 
 function drawBackground(ctx: CanvasRenderingContext2D) {
   ctx.drawImage(
@@ -20,26 +20,26 @@ function drawBackground(ctx: CanvasRenderingContext2D) {
 
 function drawDoodleJump(ctx: CanvasRenderingContext2D) {
   ctx.drawImage(
-    images.Doodle_Jump,
+    images.doodleJump,
     0,
     0,
-    item_size.doodle_jump_text.width,
-    item_size.doodle_jump_text.height,
-    item_location.doodle_jump_text.x,
-    item_location.doodle_jump_text.y,
-    SCALE * item_size.doodle_jump_text.width,
-    SCALE * item_size.doodle_jump_text.height
+    item_size.doodleJumpText.width,
+    item_size.doodleJumpText.height,
+    item_location.doodleJumpText.x,
+    item_location.doodleJumpText.y,
+    SCALE * item_size.doodleJumpText.width,
+    SCALE * item_size.doodleJumpText.height
   );
 }
 
 function drawUfo(ctx: CanvasRenderingContext2D) {
-  const render = new SpriteRenderer(images.Start_End_Sprite, 162, 248);
+  const render = new SpriteRenderer(images.startEndSprite, 162, 248);
   render.drawFrame(ctx, 4, 0, item_location.ufo.x, item_location.ufo.y);
 }
 
 function drawButtons(ctx: CanvasRenderingContext2D) {
   ctx.drawImage(
-    images.Play_Button_Image,
+    images.playGameButtonImage,
     0,
     0,
     BUTTON_WIDTH,
@@ -50,7 +50,7 @@ function drawButtons(ctx: CanvasRenderingContext2D) {
     SCALE * BUTTON_HEIGHT
   );
   ctx.drawImage(
-    images.Score_Button_Image,
+    images.scoreButtonImage,
     0,
     0,
     BUTTON_WIDTH,
@@ -76,19 +76,19 @@ function drawHole(ctx: CanvasRenderingContext2D) {
 }
 
 function drawTornPart(ctx: CanvasRenderingContext2D) {
-  const render = new SpriteRenderer(images.Start_End_Sprite, 640, 166);
+  const render = new SpriteRenderer(images.startEndSprite, 640, 166);
   render.drawFrame(
     ctx,
     0,
     2,
     0,
-    ctx.canvas.height - item_size.bottom_torn_part.height
+    ctx.canvas.height - item_size.bottomTornPart.height
   );
 }
 
 function drawPlatform(ctx: CanvasRenderingContext2D) {
   const render = new SpriteRenderer(
-    images.Enemy_Sprite,
+    images.enemySprite,
     item_size.platform.width,
     item_size.platform.height
   );
@@ -102,7 +102,7 @@ function drawPlatform(ctx: CanvasRenderingContext2D) {
 }
 
 function drawPlayer(ctx: CanvasRenderingContext2D) {
-  const render = new SpriteRenderer(images.Player_Sprite, 92, 92);
+  const render = new SpriteRenderer(images.playerSprite, 92, 92);
   render.drawFrame(ctx, 0, 0, 60, 490);
 }
 

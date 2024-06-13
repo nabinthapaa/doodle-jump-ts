@@ -13,7 +13,7 @@ export default class Platform {
     public y: number,
     public type: PlatformType = PlatformType.Normal,
     public isFalling: boolean = false,
-    public image: HTMLImageElement = images.Enemy_Sprite,
+    public image: HTMLImageElement = images.enemySprite,
     width: number = PLATFORM_WIDTH,
     height: number = PLATFORM_HEIGHT
   ) {
@@ -35,7 +35,17 @@ export default class Platform {
   }
 
   public drawFrom(ctx: CanvasRenderingContext2D, x: number, y: number) {
-    ctx.drawImage(this.image, x, y, this.width, this.height, this.x, this.y, this.width, this.height);
+    ctx.drawImage(
+      this.image,
+      x,
+      y,
+      this.width,
+      this.height,
+      this.x,
+      this.y,
+      this.width,
+      this.height
+    );
     ctx.strokeRect(this.x, this.y, this.width, this.height);
   }
 

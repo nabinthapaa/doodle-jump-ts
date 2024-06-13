@@ -3,7 +3,6 @@ import { PLATFORM_HEIGHT, PLATFORM_WIDTH } from "../constants/GameConstants";
 import Platform from "./Platform";
 
 export default class Player {
-  private score: number = 0;
   private image: HTMLImageElement;
   public x: number = CANVAS_WIDTH / 2 - 92 / 2;
   public y: number = CANVAS_HEIGHT - 200;
@@ -25,40 +24,18 @@ export default class Player {
     this.width = 92;
   }
 
-  get Score(): number {
-    return this.score;
-  }
-
   get Image(): HTMLImageElement {
     return this.image;
   }
 
-  get PlayerCoordinates(): { x: number; y: number } {
+  get getPosition(): { x: number; y: number } {
     return { x: this.x, y: this.y };
   }
 
-  get PlayerDimensions(): { width: number; height: number } {
+  get getPlayerDimensions(): { width: number; height: number } {
     return { width: this.width, height: this.height };
   }
-
-  public increaseScore(): void {
-    this.score++;
-  }
-
-  public decreaseScore(): void {
-    this.score--;
-  }
-
-  public resetScore(): void {
-    this.score = 0;
-  }
-
-  public setPlayerImage(url: string) {
-    this.image.src = url;
-  }
-
-  public moveLeft() {
-    this.x -= 5;
+public moveLeft() { this.x -= 5;
     if (this.x + this.width < 0) this.x = CANVAS_WIDTH;
   }
 
@@ -90,10 +67,10 @@ export default class Player {
 
   public collidesWith(platform: Platform): boolean {
     return (
-      this.PlayerCoordinates.y + 92 > platform.y &&
-      this.PlayerCoordinates.y + 92 < platform.y + PLATFORM_HEIGHT &&
-      this.PlayerCoordinates.x + 92 > platform.x &&
-      this.PlayerCoordinates.x < platform.x + PLATFORM_WIDTH
+      this.getPosition.y + 92 > platform.y &&
+      this.getPosition.y + 92 < platform.y + PLATFORM_HEIGHT &&
+      this.getPosition.x + 92 > platform.x &&
+      this.getPosition.x < platform.x + PLATFORM_WIDTH
     );
   }
 

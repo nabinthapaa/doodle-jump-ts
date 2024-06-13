@@ -1,9 +1,9 @@
 export const item_location = {
-  start_button: {
+  startButton: {
     x: 111,
     y: 217,
   },
-  score_button: {
+  scoreButton: {
     x: 164,
     y: 388,
   },
@@ -11,7 +11,7 @@ export const item_location = {
     x: 450,
     y: 0,
   },
-  doodle_jump_text: {
+  doodleJumpText: {
     x: 21,
     y: 84,
   },
@@ -23,18 +23,18 @@ export const item_location = {
     x: 60,
     y: 746,
   },
-  bottom_torn_part: {
+  bottomTornPart: {
     x: 0,
     y: 0,
   },
 };
 
 export const item_size = {
-  start_button: {
+  startButton: {
     width: 225,
     height: 80,
   },
-  score_button: {
+  scoreButton: {
     width: 225,
     height: 80,
   },
@@ -42,7 +42,7 @@ export const item_size = {
     width: 169,
     height: 290,
   },
-  doodle_jump_text: {
+  doodleJumpText: {
     width: 416,
     height: 100,
   },
@@ -54,7 +54,7 @@ export const item_size = {
     width: 120,
     height: 35,
   },
-  bottom_torn_part: {
+  bottomTornPart: {
     width: 640,
     height: 165,
   },

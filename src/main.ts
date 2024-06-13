@@ -4,7 +4,7 @@ import { drawStartScreen } from "./Screens/StartScreen";
 import { CANVAS_HEIGHT, CANVAS_WIDTH } from "./constants/Canvas";
 import { BUTTON_HEIGHT, BUTTON_WIDTH } from "./constants/SpriteConstants";
 import "./style.css";
-import { GameStates } from "./types/GameStates";
+import { TGameStates } from "./types/GameStates";
 import { isButtonClicked } from "./utils/isButtonClicked";
 
 const canvas = document.querySelector<HTMLCanvasElement>("#canvas")!;
@@ -13,17 +13,17 @@ const ctx = canvas.getContext("2d")!;
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 
-const Game_States: GameStates = {
-  on_start_screen: true,
-  is_game_over: false,
-  on_end_screen: false,
+const GameStates: TGameStates = {
+  isOnStartScreen: true,
+  isGameOver: false,
+  isOnEndScreen: false,
   score: 0,
   name: "",
 };
 
 canvas.addEventListener("click", (e) => {
-  if (!Game_States.on_start_screen) return;
-  const is_play_button_clicked = isButtonClicked(
+  if (!GameStates.isOnStartScreen) return;
+  const isPlayButtonClicked = isButtonClicked(
     111,
     217,
     BUTTON_WIDTH,
@@ -31,11 +31,11 @@ canvas.addEventListener("click", (e) => {
     e.offsetX,
     e.offsetY
   );
-  Game_States.on_start_screen = !is_play_button_clicked;
+  GameStates.isOnStartScreen = !isPlayButtonClicked;
 });
 
 document.addEventListener("click", (e) => {
-  const is_play_again_clicked = isButtonClicked(
+  const isPlayAgainButtonClicked = isButtonClicked(
     210,
     650,
     BUTTON_WIDTH,
@@ -43,11 +43,11 @@ document.addEventListener("click", (e) => {
     e.offsetX,
     e.offsetY
   );
-  if(!Game_States.on_end_screen) return;
-  Game_States.is_game_over = !is_play_again_clicked;
-  Game_States.on_end_screen = !is_play_again_clicked;
-  Game_States.on_start_screen = !is_play_again_clicked;
-  Game_States.score = 0;
+  if (!GameStates.isOnEndScreen) return;
+  GameStates.isGameOver = !isPlayAgainButtonClicked;
+  GameStates.isOnEndScreen = !isPlayAgainButtonClicked;
+  GameStates.isOnStartScreen = !isPlayAgainButtonClicked;
+  GameStates.score = 0;
 });
 
 const FPS = 60;
@@ -61,12 +61,12 @@ function draw(currentTime: number = 0) {
     lastTime = currentTime - (deltaTime % FRAME_DURATION); // Adjust the lastTime to avoid drift
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (!Game_States.on_start_screen && !Game_States.is_game_over) {
-      GameLoop(ctx, Game_States);
-    } else if (Game_States.is_game_over) {
-      Game_States.on_end_screen = true;
-      Game_States.on_start_screen = false;
-      drawEndScreen(ctx, Game_States);
+    if (!GameStates.isOnStartScreen && !GameStates.isGameOver) {
+      GameLoop(ctx, GameStates);
+    } else if (GameStates.isGameOver) {
+      GameStates.isOnEndScreen = true;
+      GameStates.isOnStartScreen = false;
+      drawEndScreen(ctx, GameStates);
     } else {
       drawStartScreen(ctx);
     }
