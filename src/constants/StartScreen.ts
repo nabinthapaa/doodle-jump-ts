@@ -1,5 +1,3 @@
-import { start } from "../images/StartScreen";
-
 export const item_location = {
   start_button: {
     x: 111,

@@ -25,13 +25,23 @@ canvas.addEventListener("click", (e) => {
     e.offsetY
   );
 });
+const FPS = 60;
+const FRAME_DURATION = 1000 / FPS;
 
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  if (is_play_button_clicked) {
-    GameLoop(ctx);
-  } else {
-    drawStartScreen(ctx);
+let lastTime = 0;
+
+function draw(currentTime: number = 0) {
+  const deltaTime = currentTime - lastTime;
+
+  if (deltaTime >= FRAME_DURATION) {
+    lastTime = currentTime - (deltaTime % FRAME_DURATION); // Adjust the lastTime to avoid drift
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (is_play_button_clicked && !on_start_screen) {
+      GameLoop(ctx);
+    } else {
+      drawStartScreen(ctx);
+    }
   }
   requestAnimationFrame(draw);
 }

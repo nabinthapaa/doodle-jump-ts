@@ -1,14 +1,23 @@
 import { CANVAS_HEIGHT, CANVAS_WIDTH } from "../constants/Canvas";
+import { PLATFORM_HEIGHT, PLATFORM_WIDTH } from "../constants/GameConstants";
+import Platform from "./Platform";
 
 export default class Player {
   private score: number = 0;
   private image: HTMLImageElement;
-  private x: number = CANVAS_WIDTH / 2 - 92 / 2;
-  private y: number = CANVAS_HEIGHT - 92;
+  public x: number = CANVAS_WIDTH / 2 - 92 / 2;
+  public y: number = CANVAS_HEIGHT - 200;
   private width: number;
   private height: number;
+  public gravity: number = 0.4;
+  public onGround: boolean = true;
+  public jumpStrength: number = -12;
 
-  constructor(public name: string, image_url: string) {
+  constructor(
+    public name: string,
+    image_url: string,
+    public velocity: number = 0
+  ) {
     this.image = new Image();
     this.image.src = image_url;
     this.height = 92;
@@ -48,12 +57,42 @@ export default class Player {
   }
 
   public moveLeft() {
-    if (CANVAS_WIDTH / 2 - 92 / 2 - 10 < 0) return;
-    this.x -= 10;
+    this.x -= 5;
+    if (this.x + this.width < 0) this.x = CANVAS_WIDTH;
   }
 
   public moveRight() {
-    if (CANVAS_WIDTH / 2 - 92 / 2 + 10 > CANVAS_WIDTH) return;
-    this.x += 10;
+    this.x += 5;
+    if (this.x > CANVAS_WIDTH) this.x = 0;
+  }
+
+  public applyGravity() {
+    if (!this.onGround) {
+      this.velocity += this.gravity;
+      this.y += this.velocity;
+
+      if (this.y + this.height >= CANVAS_HEIGHT + 100) {
+        this.y = CANVAS_HEIGHT;
+        this.velocity = 0;
+        this.onGround = true;
+      }
+    }
+  }
+
+  public jump() {
+    if (this.onGround) {
+      this.velocity = this.jumpStrength;
+      this.y += this.velocity;
+      this.onGround = false;
+    }
+  }
+
+  public collidesWith(platform: Platform): boolean {
+    return (
+      this.PlayerCoordinates.y + 92 > platform.y &&
+      this.PlayerCoordinates.y + 92 < platform.y + PLATFORM_HEIGHT &&
+      this.PlayerCoordinates.x + 92 > platform.x &&
+      this.PlayerCoordinates.x < platform.x + PLATFORM_WIDTH
+    );
   }
 }
