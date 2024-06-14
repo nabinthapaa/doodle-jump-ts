@@ -3,6 +3,7 @@ import { GameLoop } from "./Screens/GameScreen";
 import { drawStartScreen } from "./Screens/StartScreen";
 import { CANVAS_HEIGHT, CANVAS_WIDTH } from "./constants/Canvas";
 import { BUTTON_HEIGHT, BUTTON_WIDTH } from "./constants/SpriteConstants";
+import { GameSounds } from "./sfx/GameSounds";
 import "./style.css";
 import { TGameStates } from "./types/GameStates";
 import { isButtonClicked } from "./utils/isButtonClicked";
@@ -31,6 +32,7 @@ canvas.addEventListener("click", (e) => {
     e.offsetX,
     e.offsetY
   );
+  if(isPlayButtonClicked)  GameSounds.start.play();
   GameStates.isOnStartScreen = !isPlayButtonClicked;
 });
 

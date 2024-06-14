@@ -1,4 +1,4 @@
-export const item_location = {
+export const itemLocation = {
   startButton: {
     x: 111,
     y: 217,
@@ -29,7 +29,7 @@ export const item_location = {
   },
 };
 
-export const item_size = {
+export const itemSize = {
   startButton: {
     width: 225,
     height: 80,

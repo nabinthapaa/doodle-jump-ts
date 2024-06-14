@@ -108,10 +108,11 @@ function checkCollision() {
           !platforms[i].isFalling && GameSounds.break.play();
           platforms[i].fall();
           platforms[i].isFalling = true;
-          player.onGround = false;
+          player.onGround = platforms[i].isFalling;
           break;
         case PlatformType.Invisible:
           player.onGround = true;
+          platforms[i].Width > 0 && GameSounds.invisible.play();
           platforms[i].Width = 0;
           platforms[i].Height = 0;
           break;
@@ -145,13 +146,13 @@ function movePlatformsAndRemovePlatforms(GameStates: TGameStates) {
           generatePlatform(
             PlatformType.Normal,
             150,
-            400,
+            200,
           );
         } else if (seed > 0.3) {
           generatePlatform(PlatformType.Invisible);
         }
       }
-      if (platforms.length < MAX_PLATFORMS) generatePlatform();
+      generatePlatform();
     }
     player.y = CANVAS_HEIGHT / 2;
   }
@@ -171,17 +172,13 @@ function generatePlatform(
   platformSpacing: number = 150,
   platformOffsetY: number = 200,
 ) {
-  console.group("generatePlatform");
   let randomX = Math.floor((Math.random() * CANVAS_WIDTH * 3) / 4);
-  console.log(platforms.length);
   const platform = new Platform(
     randomX,
     CANVAS_HEIGHT - platforms.length * platformSpacing - platformOffsetY,
     type
   );
-  console.log(type, { randomX, y: platform.y });
   platforms.push(platform);
-  console.groupEnd();
   return platform;
 }
 
